@@ -205,7 +205,7 @@ export default function HomePage() {
         <div className="px-8 lg:px-16">
           <div className="flex justify-between items-center h-20">
             <Link href="/" className="flex items-center">
-              <span className="text-2xl font-black text-white tracking-wider">NOMADX</span>
+              <span className="text-xl font-black text-white tracking-wider">NOMADX</span>
             </Link>
             
             <div className="hidden lg:flex items-center space-x-8">
@@ -306,12 +306,12 @@ export default function HomePage() {
                     padding: '4px'
                   }}
                 >
-                  <div className="w-full h-full bg-white rounded-full flex items-center justify-center p-12">
+                  <div className="w-full h-full bg-white rounded-full flex items-center justify-center p-20">
                     <Image
                       src="/nomadx-emblem.jpg"
                       alt="NOMADX Emblem"
-                      width={300}
-                      height={300}
+                      width={220}
+                      height={220}
                       className="w-full h-full object-contain"
                       priority
                     />
