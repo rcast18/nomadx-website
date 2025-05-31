@@ -160,18 +160,18 @@ export default function HomePage() {
   ]
 
   const teamMembers = [
-    { name: "Aaliyah", image: "/team/Aaliyah.jpeg" },
-    { name: "Brandon", image: "/team/Brandon.jpeg" },
-    { name: "Cody", image: "/team/Cody.jpeg" },
-    { name: "Ingrid", image: "/team/Ingrid.jpeg" },
-    { name: "Karla", image: "/team/Karla.jpeg" },
-    { name: "Mathias", image: "/team/Mathias.jpeg" },
-    { name: "Pablo", image: "/team/Pablo.jpeg" },
-    { name: "Rui", image: "/team/Rui.jpeg" },
-    { name: "Sage", image: "/team/Sage.jpeg" },
-    { name: "Seong", image: "/team/Seong.jpeg" },
-    { name: "Tania", image: "/team/Tania.jpeg" },
-    { name: "Vaina", image: "/team/Vaina.jpeg" }
+    { name: "Aaliyah", role: "SNS Lead • Web Design Lead • Marketing Coordinator", image: "/team/Aaliyah.jpeg" },
+    { name: "Brandon", role: "YouTube Producing Lead", image: "/team/Brandon.jpeg" },
+    { name: "Cody", role: "YouTube Producing Coordinator", image: "/team/Cody.jpeg" },
+    { name: "Ingrid", role: "Operation Lead", image: "/team/Ingrid.jpeg" },
+    { name: "Karla", role: "YouTube Editing Lead", image: "/team/Karla.jpeg" },
+    { name: "Mathias", role: "YouTube Editing Coordinator", image: "/team/Mathias.jpeg" },
+    { name: "Pablo", role: "AI Automation Coordinator", image: "/team/Pablo.jpeg" },
+    { name: "Rui", role: "Tech & AI Coordinator", image: "/team/Rui.jpeg" },
+    { name: "Sage", role: "Ecommerce Design Lead", image: "/team/Sage.jpeg" },
+    { name: "Seong", role: "Business Strategy • CEO", image: "/team/Seong.jpeg" },
+    { name: "Tania", role: "YouTube Producing Coordinator", image: "/team/Tania.jpeg" },
+    { name: "Vaina", role: "Event Outdoors Lead", image: "/team/Vaina.jpeg" }
   ]
 
   const nextSlide = () => {
@@ -607,9 +607,12 @@ export default function HomePage() {
                       />
                     </div>
                     <div className="flex-1 max-w-sm">
-                      <h3 className="text-4xl lg:text-5xl font-bold text-gray-900">
+                      <h3 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-3">
                         {member.name}
                       </h3>
+                      <p className="text-lg text-gray-600 leading-relaxed">
+                        {member.role}
+                      </p>
                     </div>
                   </div>
                 ))}
