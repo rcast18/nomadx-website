@@ -53,7 +53,7 @@ const translations = {
     gymButton: "Start Training",
     
     // Team
-    teamTitle: "MEET OUR CREW",
+    teamTitle: "Team NomadX",
     teamDescription: "Get to know the amazing people who make NOMADX possible. Our diverse team brings passion, creativity, and expertise to create an unforgettable nomad experience.",
     teamCounter: "of",
     teamHint: "Click to meet the team",
@@ -100,7 +100,7 @@ const translations = {
     gymButton: "트레이닝 시작하기",
     
     // Team
-    teamTitle: "우리 크루를 만나보세요",
+    teamTitle: "Team NomadX",
     teamDescription: "NOMADX를 가능하게 하는 놀라운 사람들을 알아보세요. 우리의 다양한 팀은 잊을 수 없는 노마드 경험을 만들기 위해 열정, 창의성, 전문성을 제공합니다.",
     teamCounter: "중",
     teamHint: "팀을 만나려면 클릭하세요",
