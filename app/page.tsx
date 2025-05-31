@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown } from "lucide-react"
+import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown, Menu, X } from "lucide-react"
 import { useState, useEffect } from "react"
 
 import { Button } from "@/components/ui/button"
@@ -121,6 +121,7 @@ export default function HomePage() {
   const [currentTeamSlide, setCurrentTeamSlide] = useState(0)
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0])
   const [isOpen, setIsOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const handleLanguageChange = (language: (typeof languages)[0]) => {
     setSelectedLanguage(language)
@@ -198,14 +199,39 @@ export default function HomePage() {
     setCurrentTeamSlide(index)
   }
 
+  // Close mobile menu when clicking outside or pressing Escape
+  useEffect(() => {
+    // Prevent body scroll when mobile menu is open
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setIsMobileMenuOpen(false)
+      }
+    }
+
+    if (isMobileMenuOpen) {
+      document.addEventListener('keydown', handleEscape)
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape)
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMobileMenuOpen])
+
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-black z-50">
-        <div className="px-8 lg:px-16">
-          <div className="flex justify-between items-center h-20">
+        <div className="px-4 sm:px-8 lg:px-16">
+          <div className="flex justify-between items-center h-16 sm:h-20">
             <Link href="/" className="flex items-center">
-              <span className="text-xl font-black text-white tracking-wider">NOMADX</span>
+              <span className="text-lg sm:text-xl font-black text-white tracking-wider">NOMADX</span>
             </Link>
             
             <div className="hidden lg:flex items-center space-x-8">
@@ -229,7 +255,7 @@ export default function HomePage() {
               </Link>
             </div>
             
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center space-x-2 sm:space-x-3">
               <Popover open={isOpen} onOpenChange={setIsOpen}>
                 <PopoverTrigger asChild>
                   <Button variant="ghost" size="sm" className="h-8 px-2 hover:bg-white/10 rounded-full">
@@ -256,18 +282,90 @@ export default function HomePage() {
                 </PopoverContent>
               </Popover>
               
-              <Link href="https://us2.cloudbeds.com/en/reservation/RW1b6i?currency=krw" target="_blank">
-                <Button className="bg-white text-black hover:bg-gray-100 rounded-full px-6 py-2 font-semibold">
+              <Link href="https://us2.cloudbeds.com/en/reservation/RW1b6i?currency=krw" target="_blank" className="hidden sm:block">
+                <Button className="bg-white text-black hover:bg-gray-100 rounded-full px-4 sm:px-6 py-2 font-semibold text-sm sm:text-base">
+                  {t.bookRoom}
+                </Button>
+              </Link>
+              
+              {/* Mobile Menu Button */}
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-6 w-6 text-white" />
+                ) : (
+                  <Menu className="h-6 w-6 text-white" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="lg:hidden bg-black border-t border-gray-800">
+            <div className="px-4 py-4 space-y-3">
+              <Link 
+                href="#space" 
+                className="block text-white hover:bg-white/10 px-4 py-3 rounded-lg transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t.space}
+              </Link>
+              <Link 
+                href="#community" 
+                className="block text-white hover:bg-white/10 px-4 py-3 rounded-lg transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t.community}
+              </Link>
+              <Link 
+                href="#programs" 
+                className="block text-white hover:bg-white/10 px-4 py-3 rounded-lg transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t.programs}
+              </Link>
+              <Link 
+                href="#join" 
+                className="block text-white hover:bg-white/10 px-4 py-3 rounded-lg transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t.joinUs}
+              </Link>
+              <Link 
+                href="#projects" 
+                className="block text-white hover:bg-white/10 px-4 py-3 rounded-lg transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t.projects}
+              </Link>
+              <Link 
+                href="#contact" 
+                className="block text-white hover:bg-white/10 px-4 py-3 rounded-lg transition-colors font-medium"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {t.contactUs}
+              </Link>
+              <Link 
+                href="https://us2.cloudbeds.com/en/reservation/RW1b6i?currency=krw" 
+                target="_blank"
+                className="block sm:hidden"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <Button className="w-full bg-white text-black hover:bg-gray-100 rounded-full py-3 font-semibold">
                   {t.bookRoom}
                 </Button>
               </Link>
             </div>
           </div>
-        </div>
+        )}
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      <section className="relative min-h-screen flex items-center pt-16 sm:pt-20 overflow-hidden">
         <div 
           className="absolute inset-0" 
           style={{
@@ -275,20 +373,20 @@ export default function HomePage() {
           }}
         />
         
-        <div className="relative z-10 w-full px-8 lg:px-16">
-          <div className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
-            <div>
-              <h1 className="text-5xl lg:text-7xl font-black text-white mb-6">
+        <div className="relative z-10 w-full px-4 sm:px-8 lg:px-16 py-8 sm:py-0">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center max-w-7xl mx-auto">
+            <div className="order-2 lg:order-1">
+              <h1 className="text-3xl sm:text-5xl lg:text-7xl font-black text-white mb-4 sm:mb-6">
                 {t.heroTitle}
               </h1>
-              <p className="text-2xl lg:text-3xl text-white/90 mb-8 font-light">
+              <p className="text-xl sm:text-2xl lg:text-3xl text-white/90 mb-4 sm:mb-8 font-light">
                 {t.heroSubtitle}
               </p>
-              <p className="text-lg lg:text-xl text-white/80 mb-10 leading-relaxed">
+              <p className="text-base sm:text-lg lg:text-xl text-white/80 mb-6 sm:mb-10 leading-relaxed">
                 {t.heroDescription}
               </p>
               <Link href="#space">
-                <Button className="bg-white text-black hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold inline-flex items-center group">
+                <Button className="bg-white text-black hover:bg-gray-100 rounded-full px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg font-semibold inline-flex items-center group w-full sm:w-auto justify-center">
                   {t.viewSpaces}
                   <div className="ml-2 bg-black text-white rounded-full p-1 group-hover:translate-x-1 transition-transform">
                     <ArrowRight className="h-4 w-4" />
@@ -297,16 +395,16 @@ export default function HomePage() {
               </Link>
             </div>
             
-            <div className="flex justify-center">
+            <div className="flex justify-center order-1 lg:order-2">
               <div className="relative">
                 <div 
-                  className="w-80 h-80 lg:w-96 lg:h-96 rounded-full flex items-center justify-center"
+                  className="w-60 h-60 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full flex items-center justify-center"
                   style={{
                     background: 'linear-gradient(90deg, #7C3AED 0%, #2563EB 25%, #0891B2 50%, #10B981 75%, #F59E0B 100%)',
                     padding: '4px'
                   }}
                 >
-                  <div className="w-full h-full bg-white rounded-full flex items-center justify-center p-20">
+                  <div className="w-full h-full bg-white rounded-full flex items-center justify-center p-12 sm:p-20">
                     <Image
                       src="/nomadx-emblem.jpg"
                       alt="NOMADX Emblem"
@@ -324,24 +422,24 @@ export default function HomePage() {
       </section>
 
       {/* Hub Section */}
-      <section id="space" className="py-20 lg:py-32">
-        <div className="px-8 lg:px-16 max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16">
+      <section id="space" className="py-16 sm:py-20 lg:py-32">
+        <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
             <div>
-              <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                 {t.hubTitle}
               </h2>
-              <p className="text-xl text-gray-600 mb-4">
+              <p className="text-lg sm:text-xl text-gray-600 mb-3 sm:mb-4">
                 {t.hubLocation}
               </p>
-              <p className="text-xl text-gray-600">
+              <p className="text-lg sm:text-xl text-gray-600">
                 {t.hubDescription}
               </p>
             </div>
             
             <div className="relative max-w-lg mx-auto">
               {/* Carousel Container */}
-              <div className="overflow-hidden rounded-3xl">
+              <div className="overflow-hidden rounded-2xl sm:rounded-3xl">
                 <div 
                   className="flex transition-transform duration-500 ease-in-out"
                   style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -349,18 +447,18 @@ export default function HomePage() {
                   {cards.map((card, index) => (
                     <Card 
                       key={card.id}
-                      className="w-full flex-shrink-0 p-12 rounded-3xl" 
+                      className="w-full flex-shrink-0 p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl" 
                       style={{ backgroundColor: card.color }}
                     >
                       <div className="text-white">
-                        <div className="text-6xl font-black mb-4 opacity-20">{card.number}</div>
-                        <h3 className="text-4xl font-bold mb-4">{card.title}</h3>
-                        <p className="text-xl mb-6 opacity-90 leading-relaxed">
+                        <div className="text-4xl sm:text-5xl md:text-6xl font-black mb-3 sm:mb-4 opacity-20">{card.number}</div>
+                        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">{card.title}</h3>
+                        <p className="text-base sm:text-lg md:text-xl mb-4 sm:mb-6 opacity-90 leading-relaxed">
                           {card.description}
                         </p>
                         <Link href={card.link} target={card.link.startsWith('http') ? '_blank' : undefined}>
                           <Button 
-                            className="bg-white hover:bg-gray-100 rounded-full px-6 py-3 font-semibold inline-flex items-center group"
+                            className="bg-white hover:bg-gray-100 rounded-full px-4 sm:px-6 py-2 sm:py-3 font-semibold inline-flex items-center group text-sm sm:text-base w-full sm:w-auto justify-center"
                             style={{ color: card.color }}
                           >
                             {card.buttonText}
@@ -368,7 +466,7 @@ export default function HomePage() {
                               className="ml-2 rounded-full p-1 group-hover:translate-x-1 transition-transform"
                               style={{ backgroundColor: card.color, color: 'white' }}
                             >
-                              <ArrowRight className="h-4 w-4" />
+                              <ArrowRight className="h-3 sm:h-4 w-3 sm:w-4" />
                             </div>
                           </Button>
                         </Link>
@@ -381,25 +479,25 @@ export default function HomePage() {
               {/* Navigation Arrows */}
               <button
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110"
+                className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 sm:p-3 shadow-lg transition-all duration-200 hover:scale-110"
               >
-                <ChevronLeft className="h-6 w-6 text-gray-800" />
+                <ChevronLeft className="h-5 sm:h-6 w-5 sm:w-6 text-gray-800" />
               </button>
               
               <button
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110"
+                className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 sm:p-3 shadow-lg transition-all duration-200 hover:scale-110"
               >
-                <ChevronRight className="h-6 w-6 text-gray-800" />
+                <ChevronRight className="h-5 sm:h-6 w-5 sm:w-6 text-gray-800" />
               </button>
 
               {/* Dot Navigation */}
-              <div className="flex justify-center mt-6 space-x-3">
+              <div className="flex justify-center mt-4 sm:mt-6 space-x-2 sm:space-x-3">
                 {cards.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
-                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                    className={`w-2.5 sm:w-3 h-2.5 sm:h-3 rounded-full transition-all duration-300 ${
                       index === currentSlide 
                         ? 'bg-gray-800 scale-125' 
                         : 'bg-gray-300 hover:bg-gray-500'
@@ -409,8 +507,8 @@ export default function HomePage() {
               </div>
               
               {/* Navigation hint */}
-              <div className="flex justify-center mt-4">
-                <p className="text-sm text-gray-500">{t.clickArrows}</p>
+              <div className="flex justify-center mt-3 sm:mt-4">
+                <p className="text-xs sm:text-sm text-gray-500">{t.clickArrows}</p>
               </div>
             </div>
           </div>
@@ -418,21 +516,21 @@ export default function HomePage() {
       </section>
 
       {/* About Us Section */}
-      <section className="py-20 lg:py-32 bg-white">
-        <div className="px-8 lg:px-16 max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-8">
+      <section className="py-16 sm:py-20 lg:py-32 bg-white">
+        <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center">
+            <div className="order-2 lg:order-1">
+              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-8">
                 {t.aboutTitle}
               </h2>
-              <p className="text-xl text-gray-700 mb-6 leading-relaxed">
+              <p className="text-base sm:text-lg lg:text-xl text-gray-700 mb-4 sm:mb-6 leading-relaxed">
                 {t.aboutDescription1}
               </p>
-              <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+              <p className="text-base sm:text-lg lg:text-xl text-gray-700 mb-6 sm:mb-8 leading-relaxed">
                 {t.aboutDescription2}
               </p>
               <Link href="/join">
-                <Button className="bg-black text-white hover:bg-gray-800 rounded-full px-8 py-4 text-lg font-semibold inline-flex items-center group">
+                <Button className="bg-black text-white hover:bg-gray-800 rounded-full px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold inline-flex items-center group w-full sm:w-auto justify-center">
                   {t.learnMore}
                   <div className="ml-2 bg-white text-black rounded-full p-1 group-hover:translate-x-1 transition-transform">
                     <ArrowRight className="h-4 w-4" />
@@ -441,7 +539,7 @@ export default function HomePage() {
               </Link>
             </div>
             
-            <div className="relative h-96 lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+            <div className="relative h-64 sm:h-80 lg:h-[500px] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl order-1 lg:order-2">
               <Image
                 src="/nomad-work-interior.jpeg"
                 alt="NOMADX Interior"
@@ -454,44 +552,44 @@ export default function HomePage() {
       </section>
 
       {/* Features Grid */}
-      <section id="community" className="py-20 lg:py-32">
-        <div className="px-8 lg:px-16 max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card className="p-8 rounded-3xl" style={{ backgroundColor: '#1DB584' }}>
+      <section id="community" className="py-16 sm:py-20 lg:py-32">
+        <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+            <Card className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl" style={{ backgroundColor: '#1DB584' }}>
               <div className="text-white">
-                <div className="text-5xl font-black mb-4 opacity-20">01</div>
-                <h3 className="text-2xl font-bold mb-3">Events &<br />Gatherings</h3>
-                <p className="text-lg opacity-90">
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-black mb-3 sm:mb-4 opacity-20">01</div>
+                <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Events &<br />Gatherings</h3>
+                <p className="text-sm sm:text-base lg:text-lg opacity-90">
                   Weekly meetups, workshops, and social events
                 </p>
               </div>
             </Card>
 
-            <Card className="p-8 rounded-3xl" style={{ backgroundColor: '#FF6B6B' }}>
+            <Card className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl" style={{ backgroundColor: '#FF6B6B' }}>
               <div className="text-white">
-                <div className="text-5xl font-black mb-4 opacity-20">02</div>
-                <h3 className="text-2xl font-bold mb-3">Online<br />Community</h3>
-                <p className="text-lg opacity-90">
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-black mb-3 sm:mb-4 opacity-20">02</div>
+                <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Online<br />Community</h3>
+                <p className="text-sm sm:text-base lg:text-lg opacity-90">
                   Connect with nomads worldwide 24/7
                 </p>
               </div>
             </Card>
 
-            <Card className="p-8 rounded-3xl" style={{ backgroundColor: '#A855F7' }}>
+            <Card className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl" style={{ backgroundColor: '#A855F7' }}>
               <div className="text-white">
-                <div className="text-5xl font-black mb-4 opacity-20">03</div>
-                <h3 className="text-2xl font-bold mb-3">Meet the<br />Crew</h3>
-                <p className="text-lg opacity-90">
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-black mb-3 sm:mb-4 opacity-20">03</div>
+                <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Meet the<br />Crew</h3>
+                <p className="text-sm sm:text-base lg:text-lg opacity-90">
                   Our friendly team is here to help
                 </p>
               </div>
             </Card>
 
-            <Card className="p-8 rounded-3xl" style={{ backgroundColor: '#FFD93D' }}>
+            <Card className="p-6 sm:p-8 rounded-2xl sm:rounded-3xl" style={{ backgroundColor: '#FFD93D' }}>
               <div className="text-gray-900">
-                <div className="text-5xl font-black mb-4 opacity-20">04</div>
-                <h3 className="text-2xl font-bold mb-3">Stay-for-Work<br />Program</h3>
-                <p className="text-lg opacity-90">
+                <div className="text-3xl sm:text-4xl lg:text-5xl font-black mb-3 sm:mb-4 opacity-20">04</div>
+                <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Stay-for-Work<br />Program</h3>
+                <p className="text-sm sm:text-base lg:text-lg opacity-90">
                   Long-term stays with special perks
                 </p>
               </div>
@@ -501,51 +599,51 @@ export default function HomePage() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 lg:py-32 bg-gray-50">
-        <div className="px-8 lg:px-16 max-w-7xl mx-auto">
-          <h2 className="text-4xl lg:text-5xl font-bold text-center text-gray-900 mb-16">
+      <section id="projects" className="py-16 sm:py-20 lg:py-32 bg-gray-50">
+        <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-gray-900 mb-8 sm:mb-12 lg:mb-16">
             NOMADX Projects
           </h2>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-3">NOMADX TV</h3>
-              <p className="text-gray-600">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            <div className="text-center px-4">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">NOMADX TV</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 YouTube channel featuring nomad life stories and interviews
               </p>
             </div>
             
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-3">NOMADX TOUR</h3>
-              <p className="text-gray-600">
+            <div className="text-center px-4">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">NOMADX TOUR</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 Adventure experiences curated for digital nomads
               </p>
             </div>
             
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-3">NOMADX CAMP</h3>
-              <p className="text-gray-600">
+            <div className="text-center px-4">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">NOMADX CAMP</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 All-in-one self-development bootcamp
               </p>
             </div>
             
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-3">NOMADX FITNESS</h3>
-              <p className="text-gray-600">
+            <div className="text-center px-4">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">NOMADX FITNESS</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 Immersive group workouts and personalized training
               </p>
             </div>
             
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-3">NOMADX ACCELERATOR</h3>
-              <p className="text-gray-600">
+            <div className="text-center px-4">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">NOMADX ACCELERATOR</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 Startup program for high-potential teams
               </p>
             </div>
             
-            <div className="text-center">
-              <h3 className="text-2xl font-bold mb-3">NOMADX EVENT</h3>
-              <p className="text-gray-600">
+            <div className="text-center px-4">
+              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">NOMADX EVENT</h3>
+              <p className="text-sm sm:text-base text-gray-600">
                 Large-scale festivals and competitions
               </p>
             </div>
@@ -554,19 +652,19 @@ export default function HomePage() {
       </section>
 
       {/* Join Section */}
-      <section id="join" className="py-20 lg:py-32" style={{ backgroundColor: '#FFD93D' }}>
-        <div className="px-8 lg:px-16 max-w-7xl mx-auto text-center">
-          <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+      <section id="join" className="py-16 sm:py-20 lg:py-32" style={{ backgroundColor: '#FFD93D' }}>
+        <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-4 sm:mb-6">
             Join the NOMADX movement
           </h2>
-          <p className="text-2xl text-gray-800 mb-10 max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl lg:text-2xl text-gray-800 mb-6 sm:mb-10 max-w-3xl mx-auto px-4">
             Become part of our global community and start your journey today
           </p>
           <Link href="/join">
-            <Button className="bg-black text-white hover:bg-gray-800 rounded-full px-10 py-6 text-xl font-semibold inline-flex items-center group">
+            <Button className="bg-black text-white hover:bg-gray-800 rounded-full px-8 sm:px-10 py-4 sm:py-6 text-lg sm:text-xl font-semibold inline-flex items-center group w-auto">
               Apply here
-              <div className="ml-3 bg-white text-black rounded-full p-1 group-hover:translate-x-1 transition-transform">
-                <ArrowRight className="h-5 w-5" />
+              <div className="ml-2 sm:ml-3 bg-white text-black rounded-full p-1 group-hover:translate-x-1 transition-transform">
+                <ArrowRight className="h-4 sm:h-5 w-4 sm:w-5" />
               </div>
             </Button>
           </Link>
@@ -574,13 +672,13 @@ export default function HomePage() {
       </section>
 
       {/* Meet Our Team Section */}
-      <section className="py-20 lg:py-32 bg-gray-50">
-        <div className="px-8 lg:px-16 max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+      <section className="py-16 sm:py-20 lg:py-32 bg-gray-50">
+        <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
               {t.teamTitle}
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               {t.teamDescription}
             </p>
           </div>
@@ -595,9 +693,9 @@ export default function HomePage() {
                 {teamMembers.map((member, index) => (
                   <div 
                     key={index}
-                    className="w-full flex-shrink-0 flex items-center justify-center gap-8"
+                    className="w-full flex-shrink-0 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 px-8 sm:px-0"
                   >
-                    <div className="w-64 h-64 rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
+                    <div className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-2xl overflow-hidden shadow-lg flex-shrink-0">
                       <Image
                         src={member.image}
                         alt={member.name}
@@ -606,11 +704,11 @@ export default function HomePage() {
                         className="object-cover w-full h-full"
                       />
                     </div>
-                    <div className="flex-1 max-w-sm">
-                      <h3 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-3">
+                    <div className="flex-1 max-w-sm text-center sm:text-left">
+                      <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">
                         {member.name}
                       </h3>
-                      <p className="text-lg text-gray-600 leading-relaxed">
+                      <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed">
                         {member.role}
                       </p>
                     </div>
@@ -622,20 +720,20 @@ export default function HomePage() {
             {/* Navigation Arrows */}
             <button
               onClick={prevTeamSlide}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110 z-10"
+              className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 sm:p-3 shadow-lg transition-all duration-200 hover:scale-110 z-10"
             >
-              <ChevronLeft className="h-6 w-6 text-gray-800" />
+              <ChevronLeft className="h-5 sm:h-6 w-5 sm:w-6 text-gray-800" />
             </button>
             
             <button
               onClick={nextTeamSlide}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110 z-10"
+              className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 sm:p-3 shadow-lg transition-all duration-200 hover:scale-110 z-10"
             >
-              <ChevronRight className="h-6 w-6 text-gray-800" />
+              <ChevronRight className="h-5 sm:h-6 w-5 sm:w-6 text-gray-800" />
             </button>
 
             {/* Dot Navigation */}
-            <div className="flex justify-center mt-6 space-x-2 flex-wrap">
+            <div className="flex justify-center mt-4 sm:mt-6 space-x-2 flex-wrap">
               {teamMembers.map((_, index) => (
                 <button
                   key={index}
@@ -650,8 +748,8 @@ export default function HomePage() {
             </div>
             
             {/* Navigation hint */}
-            <div className="flex justify-center mt-4">
-              <p className="text-sm text-gray-500">
+            <div className="flex justify-center mt-3 sm:mt-4">
+              <p className="text-xs sm:text-sm text-gray-500">
                 {currentTeamSlide + 1} {t.teamCounter} {teamMembers.length} • {t.teamHint}
               </p>
             </div>
@@ -660,54 +758,54 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer id="contact" className="bg-black text-white py-16">
-        <div className="px-8 lg:px-16 max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-12">
-            <div>
-              <h3 className="text-3xl font-black mb-6">NOMADX</h3>
+      <footer id="contact" className="bg-black text-white py-12 sm:py-16">
+        <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12">
+            <div className="sm:col-span-2 md:col-span-1">
+              <h3 className="text-2xl sm:text-3xl font-black mb-4 sm:mb-6">NOMADX</h3>
               <div>
-                <p className="mb-4">Join our newsletter</p>
+                <p className="mb-3 sm:mb-4 text-sm sm:text-base">Join our newsletter</p>
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 mb-2"
+                  className="w-full px-3 sm:px-4 py-2 rounded-lg bg-gray-800 text-white placeholder-gray-400 mb-2 text-sm sm:text-base"
                 />
-                <Button className="w-full bg-white text-black hover:bg-gray-100 rounded-lg py-2 font-semibold">
+                <Button className="w-full bg-white text-black hover:bg-gray-100 rounded-lg py-2 font-semibold text-sm sm:text-base">
                   Subscribe
                 </Button>
               </div>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Quick Links</h4>
-              <ul className="space-y-2">
-                <li><Link href="#space" className="hover:opacity-80">Space</Link></li>
-                <li><Link href="#community" className="hover:opacity-80">Community</Link></li>
-                <li><Link href="/programs" className="hover:opacity-80">Programs</Link></li>
-                <li><Link href="#projects" className="hover:opacity-80">Projects</Link></li>
+              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Quick Links</h4>
+              <ul className="space-y-2 text-sm sm:text-base">
+                <li><Link href="#space" className="hover:opacity-80 transition-opacity">Space</Link></li>
+                <li><Link href="#community" className="hover:opacity-80 transition-opacity">Community</Link></li>
+                <li><Link href="/programs" className="hover:opacity-80 transition-opacity">Programs</Link></li>
+                <li><Link href="#projects" className="hover:opacity-80 transition-opacity">Projects</Link></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Social</h4>
-              <ul className="space-y-2">
-                <li><Link href="#" className="hover:opacity-80">Instagram</Link></li>
-                <li><Link href="#" className="hover:opacity-80">YouTube</Link></li>
-                <li><Link href="#" className="hover:opacity-80">LinkedIn</Link></li>
-                <li><Link href="#" className="hover:opacity-80">Twitter</Link></li>
+              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Social</h4>
+              <ul className="space-y-2 text-sm sm:text-base">
+                <li><Link href="#" className="hover:opacity-80 transition-opacity">Instagram</Link></li>
+                <li><Link href="#" className="hover:opacity-80 transition-opacity">YouTube</Link></li>
+                <li><Link href="#" className="hover:opacity-80 transition-opacity">LinkedIn</Link></li>
+                <li><Link href="#" className="hover:opacity-80 transition-opacity">Twitter</Link></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-4">Contact</h4>
-              <p className="mb-2">nomadx@nomadx.life</p>
-              <p className="mb-2">13f-04, 48 centum jungang-ro</p>
-              <p>haeundae-gu, busan, korea 48059</p>
+              <h4 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">Contact</h4>
+              <p className="mb-2 text-sm sm:text-base">nomadx@nomadx.life</p>
+              <p className="mb-2 text-sm sm:text-base">13f-04, 48 centum jungang-ro</p>
+              <p className="text-sm sm:text-base">haeundae-gu, busan, korea 48059</p>
             </div>
           </div>
           
-          <div className="mt-12 pt-8 border-t border-gray-800 text-center">
-            <p>&copy; 2024 NOMADX. All rights reserved.</p>
+          <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-gray-800 text-center">
+            <p className="text-xs sm:text-sm">&copy; 2024 NOMADX. All rights reserved.</p>
           </div>
         </div>
       </footer>
