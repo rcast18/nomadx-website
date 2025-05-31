@@ -406,7 +406,7 @@ export default function HomePage() {
                 >
                   <div className="w-full h-full bg-white rounded-full flex items-center justify-center p-12 sm:p-20">
                     <Image
-                      src="/nomadx-emblem.jpg"
+                      src="/nomadx-emblem-new.png"
                       alt="NOMADX Emblem"
                       width={220}
                       height={220}
