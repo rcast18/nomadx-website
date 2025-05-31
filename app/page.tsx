@@ -404,12 +404,12 @@ export default function HomePage() {
                     padding: '4px'
                   }}
                 >
-                  <div className="w-full h-full bg-white rounded-full flex items-center justify-center p-12 sm:p-20">
+                  <div className="w-full h-full bg-white rounded-full flex items-center justify-center p-8 sm:p-12">
                     <Image
                       src="/nomadx-emblem-new.png"
                       alt="NOMADX Emblem"
-                      width={220}
-                      height={220}
+                      width={300}
+                      height={300}
                       className="w-full h-full object-contain"
                       priority
                     />
