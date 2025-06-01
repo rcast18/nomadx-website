@@ -231,7 +231,9 @@ export default function HomePage() {
         <div className="px-4 sm:px-8 lg:px-16">
           <div className="flex justify-between items-center h-16 sm:h-20">
             <Link href="/" className="flex items-center">
-              <span className="text-lg sm:text-xl font-black text-white tracking-wider">NOMADX</span>
+              <span className="text-lg sm:text-xl font-black tracking-wider">
+                <span className="text-white">NOMAD</span><span style={{ color: '#755B05' }}>X</span>
+              </span>
             </Link>
             
             <div className="hidden lg:flex items-center space-x-8">
@@ -778,7 +780,9 @@ export default function HomePage() {
         <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
           <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12">
             <div className="sm:col-span-2 md:col-span-1">
-              <h3 className="text-2xl sm:text-3xl font-black mb-4 sm:mb-6">NOMADX</h3>
+              <h3 className="text-2xl sm:text-3xl font-black mb-4 sm:mb-6">
+                <span style={{ color: '#755B05' }}>NOMAD</span><span className="text-white">X</span>
+              </h3>
               <div>
                 <p className="mb-3 sm:mb-4 text-sm sm:text-base">Join our newsletter</p>
                 <input
