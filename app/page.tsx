@@ -727,7 +727,45 @@ export default function HomePage() {
                         {member.name}
                       </h3>
                       <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed">
-                        {member.role}
+                        {(() => {
+                          // Special handling for multi-word team names
+                          const roleText = member.role;
+                          let teamName = '';
+                          let position = '';
+                          
+                          if (roleText.includes('SNS Lead')) {
+                            teamName = 'SNS';
+                            position = roleText.replace('SNS', '').trim();
+                          } else if (roleText.includes('YouTube')) {
+                            teamName = 'YouTube';
+                            position = roleText.replace('YouTube', '').trim();
+                          } else if (roleText.includes('Tech & AI')) {
+                            teamName = 'Tech & AI';
+                            position = roleText.replace('Tech & AI', '').trim();
+                          } else if (roleText.includes('AI Automation')) {
+                            teamName = 'AI Automation';
+                            position = roleText.replace('AI Automation', '').trim();
+                          } else if (roleText.includes('Operation')) {
+                            teamName = 'Operation';
+                            position = roleText.replace('Operation', '').trim();
+                          } else if (roleText.includes('Ecommerce')) {
+                            teamName = 'Ecommerce';
+                            position = roleText.replace('Ecommerce', '').trim();
+                          } else if (roleText.includes('Event')) {
+                            teamName = 'Event';
+                            position = roleText.replace('Event', '').trim();
+                          } else if (roleText.includes('Business Strategy')) {
+                            teamName = 'Business Strategy';
+                            position = roleText.replace('Business Strategy', '').trim();
+                          }
+                          
+                          return (
+                            <>
+                              <span className="font-bold">{teamName}</span>
+                              {position && <span> {position}</span>}
+                            </>
+                          );
+                        })()}
                       </p>
                     </div>
                   </div>
