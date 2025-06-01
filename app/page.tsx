@@ -443,7 +443,6 @@ export default function HomePage() {
                       style={{ backgroundColor: card.color }}
                     >
                       <div className="text-white">
-                        <div className="text-4xl sm:text-5xl md:text-6xl font-black mb-3 sm:mb-4 opacity-20">{card.number}</div>
                         <h3 className="text-2xl sm:text-3xl md:text-4xl font-black mb-3 sm:mb-4">
                           <span className="text-white">NOMAD</span><span className="text-gray-300">X</span> <span className="text-white">{card.title}</span>
                         </h3>
