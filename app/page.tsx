@@ -225,7 +225,7 @@ export default function HomePage() {
   }, [isMobileMenuOpen])
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-black z-50">
         <div className="px-4 sm:px-8 lg:px-16">
@@ -414,7 +414,7 @@ export default function HomePage() {
       </section>
 
       {/* Hub Section */}
-      <section id="space" className="py-16 sm:py-20 lg:py-32">
+      <section id="space" className="py-16 sm:py-20 lg:py-32 overflow-x-hidden">
         <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
             <div>
@@ -429,9 +429,9 @@ export default function HomePage() {
               </p>
             </div>
             
-            <div className="relative max-w-lg mx-auto">
+            <div className="relative max-w-lg mx-auto overflow-hidden">
               {/* Carousel Container */}
-              <div className="overflow-hidden rounded-2xl sm:rounded-3xl">
+              <div className="overflow-hidden rounded-2xl sm:rounded-3xl mx-4 sm:mx-0">
                 <div 
                   className="flex transition-transform duration-500 ease-in-out"
                   style={{ transform: `translateX(-${currentSlide * 100}%)` }}
