@@ -31,7 +31,7 @@ const translations = {
     bookRoom: "BOOK A ROOM",
     
     // Hero
-    heroTitle: "NOMADX Life",
+    heroTitle: "Welcome to NomadX Life",
     heroSubtitle: "Work • Play • Live • Learn",
     heroDescription: "A communal space platform where digital nomads work, play, learn, and live together. Experience mobility, autonomy, and sustainability in Busan, Korea.",
     viewSpaces: "VIEW OUR SPACES",
@@ -78,7 +78,7 @@ const translations = {
     bookRoom: "객실 예약",
     
     // Hero
-    heroTitle: "NOMADX 라이프",
+    heroTitle: "Welcome to NomadX Life",
     heroSubtitle: "일하고 • 놀고 • 살고 • 배우고",
     heroDescription: "디지털 노마드들이 함께 일하고, 놀고, 배우고, 생활하는 공동 공간 플랫폼입니다. 부산, 한국에서 이동성, 자율성, 지속가능성을 경험하세요.",
     viewSpaces: "공간 둘러보기",
