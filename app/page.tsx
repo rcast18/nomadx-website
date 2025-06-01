@@ -161,7 +161,7 @@ export default function HomePage() {
   ]
 
   const teamMembers = [
-    { name: "Aaliyah", role: "SNS Lead • Web Design Lead • Marketing Coordinator", image: "/team/Aaliyah.jpeg" },
+    { name: "Aaliyah", role: "Marketing Coordinator", image: "/team/Aaliyah.jpeg" },
     { name: "Brandon", role: "YouTube Producing Lead", image: "/team/Brandon.jpeg" },
     { name: "Cody", role: "YouTube Producing Coordinator", image: "/team/Cody.jpeg" },
     { name: "Ingrid", role: "Operation Lead", image: "/team/Ingrid.jpeg" },
@@ -757,6 +757,9 @@ export default function HomePage() {
                           } else if (roleText.includes('Business Strategy')) {
                             teamName = 'Business Strategy';
                             position = roleText.replace('Business Strategy', '').trim();
+                          } else if (roleText.includes('Marketing')) {
+                            teamName = 'Marketing';
+                            position = roleText.replace('Marketing', '').trim();
                           }
                           
                           return (
