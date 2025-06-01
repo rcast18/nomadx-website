@@ -416,7 +416,7 @@ export default function HomePage() {
       {/* Hub Section */}
       <section id="space" className="py-16 sm:py-20 lg:py-32 overflow-x-hidden">
         <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16">
             <div>
               <h2 className="text-2xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                 {t.hubTitle}
@@ -429,9 +429,9 @@ export default function HomePage() {
               </p>
             </div>
             
-            <div className="relative max-w-lg mx-auto overflow-hidden">
+            <div className="relative w-full sm:max-w-lg mx-auto px-4 sm:px-0">
               {/* Carousel Container */}
-              <div className="overflow-hidden rounded-2xl sm:rounded-3xl mx-4 sm:mx-0">
+              <div className="overflow-hidden rounded-2xl sm:rounded-3xl">
                 <div 
                   className="flex transition-transform duration-500 ease-in-out"
                   style={{ transform: `translateX(-${currentSlide * 100}%)` }}
@@ -439,7 +439,7 @@ export default function HomePage() {
                   {cards.map((card, index) => (
                     <Card 
                       key={card.id}
-                      className="w-full flex-shrink-0 p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl" 
+                      className="w-full flex-shrink-0 p-6 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl min-w-0" 
                       style={{ backgroundColor: card.color }}
                     >
                       <div className="text-white">
@@ -471,14 +471,14 @@ export default function HomePage() {
               {/* Navigation Arrows */}
               <button
                 onClick={prevSlide}
-                className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 sm:p-3 shadow-lg transition-all duration-200 hover:scale-110"
+                className="absolute -left-2 sm:left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 sm:p-3 shadow-lg transition-all duration-200 hover:scale-110 z-10"
               >
                 <ChevronLeft className="h-5 sm:h-6 w-5 sm:w-6 text-gray-800" />
               </button>
               
               <button
                 onClick={nextSlide}
-                className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 sm:p-3 shadow-lg transition-all duration-200 hover:scale-110"
+                className="absolute -right-2 sm:right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-2 sm:p-3 shadow-lg transition-all duration-200 hover:scale-110 z-10"
               >
                 <ChevronRight className="h-5 sm:h-6 w-5 sm:w-6 text-gray-800" />
               </button>
