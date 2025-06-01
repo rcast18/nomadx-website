@@ -649,7 +649,7 @@ export default function HomePage() {
               <h3 className="text-xl sm:text-2xl font-black mb-2 sm:mb-3">
                 <span style={{ color: '#755B05' }}>NOMAD</span>
                 <span style={{ color: '#000000' }}>X</span>
-                <span style={{ color: '#755B05' }}> ACCELERATOR</span>
+                <span style={{ color: '#755B05' }}> ACCEL</span>
               </h3>
               <p className="text-sm sm:text-base text-gray-600">
                 Startup program for high-potential teams
