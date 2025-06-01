@@ -591,48 +591,74 @@ export default function HomePage() {
       {/* Projects Section */}
       <section id="projects" className="py-16 sm:py-20 lg:py-32 bg-gray-50">
         <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-center text-gray-900 mb-8 sm:mb-12 lg:mb-16">
-            NOMADX Projects
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-center mb-8 sm:mb-12 lg:mb-16">
+            <span style={{ color: '#755B05' }}>NOMAD</span>
+            <span style={{ color: '#000000' }}>X</span>
+            <span style={{ color: '#755B05' }}> PROJECTS</span>
           </h2>
           
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <div className="text-center px-4">
-              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">NOMADX TV</h3>
+              <h3 className="text-xl sm:text-2xl font-black mb-2 sm:mb-3">
+                <span style={{ color: '#755B05' }}>NOMAD</span>
+                <span style={{ color: '#000000' }}>X</span>
+                <span style={{ color: '#755B05' }}> TV</span>
+              </h3>
               <p className="text-sm sm:text-base text-gray-600">
                 YouTube channel featuring nomad life stories and interviews
               </p>
             </div>
             
             <div className="text-center px-4">
-              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">NOMADX TOUR</h3>
+              <h3 className="text-xl sm:text-2xl font-black mb-2 sm:mb-3">
+                <span style={{ color: '#755B05' }}>NOMAD</span>
+                <span style={{ color: '#000000' }}>X</span>
+                <span style={{ color: '#755B05' }}> TOUR</span>
+              </h3>
               <p className="text-sm sm:text-base text-gray-600">
                 Adventure experiences curated for digital nomads
               </p>
             </div>
             
             <div className="text-center px-4">
-              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">NOMADX CAMP</h3>
+              <h3 className="text-xl sm:text-2xl font-black mb-2 sm:mb-3">
+                <span style={{ color: '#755B05' }}>NOMAD</span>
+                <span style={{ color: '#000000' }}>X</span>
+                <span style={{ color: '#755B05' }}> CAMP</span>
+              </h3>
               <p className="text-sm sm:text-base text-gray-600">
                 All-in-one self-development bootcamp
               </p>
             </div>
             
             <div className="text-center px-4">
-              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">NOMADX FITNESS</h3>
+              <h3 className="text-xl sm:text-2xl font-black mb-2 sm:mb-3">
+                <span style={{ color: '#755B05' }}>NOMAD</span>
+                <span style={{ color: '#000000' }}>X</span>
+                <span style={{ color: '#755B05' }}> FITNESS</span>
+              </h3>
               <p className="text-sm sm:text-base text-gray-600">
                 Immersive group workouts and personalized training
               </p>
             </div>
             
             <div className="text-center px-4">
-              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">NOMADX ACCELERATOR</h3>
+              <h3 className="text-xl sm:text-2xl font-black mb-2 sm:mb-3">
+                <span style={{ color: '#755B05' }}>NOMAD</span>
+                <span style={{ color: '#000000' }}>X</span>
+                <span style={{ color: '#755B05' }}> ACCELERATOR</span>
+              </h3>
               <p className="text-sm sm:text-base text-gray-600">
                 Startup program for high-potential teams
               </p>
             </div>
             
             <div className="text-center px-4">
-              <h3 className="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">NOMADX EVENT</h3>
+              <h3 className="text-xl sm:text-2xl font-black mb-2 sm:mb-3">
+                <span style={{ color: '#755B05' }}>NOMAD</span>
+                <span style={{ color: '#000000' }}>X</span>
+                <span style={{ color: '#755B05' }}> EVENT</span>
+              </h3>
               <p className="text-sm sm:text-base text-gray-600">
                 Large-scale festivals and competitions
               </p>
