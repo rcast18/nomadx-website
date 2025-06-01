@@ -404,7 +404,7 @@ export default function HomePage() {
                     padding: '4px'
                   }}
                 >
-                  <div className="w-full h-full bg-white rounded-full flex items-center justify-center p-4 sm:p-6">
+                  <div className="w-full h-full rounded-full flex items-center justify-center p-4 sm:p-6">
                     <Image
                       src="/nomadx-emblem-black.avif"
                       alt="NOMADX Emblem"
