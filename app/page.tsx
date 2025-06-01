@@ -726,7 +726,7 @@ export default function HomePage() {
                       <h3 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-2 sm:mb-3">
                         {member.name}
                       </h3>
-                      <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed">
+                      <div>
                         {(() => {
                           // Special handling for multi-word team names
                           const roleText = member.role;
@@ -761,12 +761,18 @@ export default function HomePage() {
                           
                           return (
                             <>
-                              <span className="font-bold">{teamName}</span>
-                              {position && <span> {position}</span>}
+                              <p className="text-sm sm:text-base lg:text-lg font-bold text-gray-800 mb-1">
+                                {teamName}
+                              </p>
+                              {position && (
+                                <p className="text-sm sm:text-base lg:text-lg text-gray-600">
+                                  {position}
+                                </p>
+                              )}
                             </>
                           );
                         })()}
-                      </p>
+                      </div>
                     </div>
                   </div>
                 ))}
