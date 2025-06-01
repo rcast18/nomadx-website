@@ -396,25 +396,15 @@ export default function HomePage() {
             </div>
             
             <div className="flex justify-center order-1 lg:order-2">
-              <div className="relative">
-                <div 
-                  className="w-60 h-60 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-full flex items-center justify-center"
-                  style={{
-                    background: 'linear-gradient(90deg, #7C3AED 0%, #2563EB 25%, #0891B2 50%, #10B981 75%, #F59E0B 100%)',
-                    padding: '4px'
-                  }}
-                >
-                  <div className="w-full h-full rounded-full flex items-center justify-center p-4 sm:p-6">
-                    <Image
-                      src="/nomadx-emblem-black.avif"
-                      alt="NOMADX Emblem"
-                      width={400}
-                      height={400}
-                      className="w-full h-full object-contain"
-                      priority
-                    />
-                  </div>
-                </div>
+              <div className="relative w-80 h-80 sm:w-96 sm:h-96 lg:w-[500px] lg:h-[500px]">
+                <Image
+                  src="/nomadx-emblem-black.avif"
+                  alt="NOMADX Emblem"
+                  width={500}
+                  height={500}
+                  className="w-full h-full object-contain"
+                  priority
+                />
               </div>
             </div>
           </div>
