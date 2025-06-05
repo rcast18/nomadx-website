@@ -94,13 +94,23 @@ export default function FacilitiesPage() {
             <Card className="p-8 bg-gray-50 hover:shadow-lg transition-shadow">
               <div className="flex items-start gap-4">
                 <Dumbbell className="h-10 w-10 text-emerald-600 flex-shrink-0" />
-                <div>
+                <div className="flex-1">
                   <h3 className="text-2xl font-bold mb-3">Nomad Gym</h3>
                   <p className="text-gray-600 mb-2">2nd floor in this building, use the QR code for access!</p>
-                  <div className="space-y-1 text-sm">
+                  <div className="space-y-1 text-sm mb-4">
                     <p className="font-semibold">Hours:</p>
                     <p>Weekday: 6am - 11pm</p>
                     <p>Weekend: 8am - 11pm</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-lg inline-block">
+                    <Image
+                      src="/gym-qr-code.png"
+                      alt="Gym Access QR Code"
+                      width={150}
+                      height={150}
+                      className="rounded"
+                    />
+                    <p className="text-xs text-center mt-2 text-gray-600">Scan for gym access</p>
                   </div>
                 </div>
               </div>
