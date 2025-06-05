@@ -2,142 +2,12 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, MapPin, Wifi, Shield, Users, Home, Coffee, ChevronLeft, ChevronRight, Check } from "lucide-react"
-import { useState } from "react"
+import { Clock, Wifi, Dumbbell, Coffee, Gamepad2, Music, ChefHat, Tv, Users } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-
-const roomTypes = [
-  {
-    id: 1,
-    name: "Dorm Female",
-    description: "Shared dormitory for female guests with wooden bunk bed capsules",
-    features: ["Built-in storage", "Privacy features", "Shared bathroom", "Climate control"],
-    capacity: "1 Person",
-    bed: "Single Bed",
-    price: "₩35,000/night",
-    image: "/rooms/dorm.jpeg"
-  },
-  {
-    id: 2,
-    name: "Dorm Male",
-    description: "Shared dormitory for male guests with wooden bunk bed capsules",
-    features: ["Built-in storage", "Privacy features", "Shared bathroom", "Climate control"],
-    capacity: "1 Person",
-    bed: "Single Bed",
-    price: "₩35,000/night",
-    image: "/rooms/dorm.jpeg"
-  },
-  {
-    id: 3,
-    name: "Capsule Female",
-    description: "Modern pod-style accommodation for female guests",
-    features: ["Built-in shelving", "Privacy curtains", "Personal light", "Power outlets"],
-    capacity: "1 Person",
-    bed: "Super Single",
-    price: "₩45,000/night",
-    image: "/rooms/capsule.jpeg"
-  },
-  {
-    id: 4,
-    name: "Capsule Male",
-    description: "Modern pod-style accommodation for male guests",
-    features: ["Built-in shelving", "Privacy curtains", "Personal light", "Power outlets"],
-    capacity: "1 Person",
-    bed: "Super Single",
-    price: "₩45,000/night",
-    image: "/rooms/capsule.jpeg"
-  },
-  {
-    id: 5,
-    name: "Private Double",
-    description: "Spacious private room with king-size loft bed",
-    features: ["Dedicated workspace", "Private storage", "City view", "Air conditioning"],
-    capacity: "1-2 People",
-    bed: "King Bed",
-    price: "₩120,000/night",
-    image: "/rooms/double-private.jpeg"
-  },
-  {
-    id: 6,
-    name: "Private Single",
-    description: "Private room for solo travelers with personal workspace",
-    features: ["Workspace area", "Private storage", "Natural light", "Air conditioning"],
-    capacity: "1 Person",
-    bed: "Super Single",
-    price: "₩85,000/night",
-    image: "/rooms/single.jpeg"
-  }
-]
-
-const amenities = [
-  {
-    icon: Wifi,
-    title: "High-Speed WiFi",
-    description: "Reliable 500Mbps+ internet perfect for remote work",
-    color: "#1DB584"
-  },
-  {
-    icon: Shield,
-    title: "24/7 Security",
-    description: "Secure keycard access and round-the-clock monitoring",
-    color: "#FF6B6B"
-  },
-  {
-    icon: Coffee,
-    title: "Shared Kitchen",
-    description: "Fully equipped kitchen with modern appliances",
-    color: "#A855F7"
-  },
-  {
-    icon: Users,
-    title: "Community Events",
-    description: "Weekly dinners, workshops, and social gatherings",
-    color: "#FFD93D"
-  },
-  {
-    icon: Home,
-    title: "Common Areas",
-    description: "Comfortable lounges and social spaces",
-    color: "#0891B2"
-  },
-  {
-    icon: MapPin,
-    title: "Prime Location",
-    description: "Walking distance to beach and public transport",
-    color: "#065F46"
-  }
-]
-
-const galleryImages = [
-  { src: "/gallery/common-area.jpeg", alt: "Common Area", caption: "Spacious common area for work and relaxation" },
-  { src: "/gallery/conference-room.webp", alt: "Conference Room", caption: "Modern conference room for meetings" },
-  { src: "/gallery/kitchen-dining.png", alt: "Kitchen & Dining", caption: "Fully equipped shared kitchen and dining space" },
-  { src: "/gallery/loft-bedroom.jpeg", alt: "Loft Bedroom", caption: "Comfortable loft-style bedroom" }
-]
 
 export default function FacilitiesPage() {
-  const [currentRoom, setCurrentRoom] = useState(0)
-  const [currentGallery, setCurrentGallery] = useState(0)
-
-  const nextRoom = () => {
-    setCurrentRoom((prev) => (prev + 1) % roomTypes.length)
-  }
-
-  const prevRoom = () => {
-    setCurrentRoom((prev) => (prev - 1 + roomTypes.length) % roomTypes.length)
-  }
-
-  const nextGallery = () => {
-    setCurrentGallery((prev) => (prev + 1) % galleryImages.length)
-  }
-
-  const prevGallery = () => {
-    setCurrentGallery((prev) => (prev - 1 + galleryImages.length) % galleryImages.length)
-  }
-
   return (
     <div className="min-h-screen bg-white">
       {/* Navigation */}
@@ -160,353 +30,194 @@ export default function FacilitiesPage() {
       </nav>
 
       {/* Hero Section */}
-      <section className="relative min-h-[70vh] flex items-center pt-16 sm:pt-20">
-        <div 
-          className="absolute inset-0" 
-          style={{
-            background: 'linear-gradient(135deg, #1DB584 0%, #0891B2 50%, #065F46 100%)'
-          }}
-        />
-        
-        <div className="relative z-10 w-full px-4 sm:px-8 lg:px-16 py-16 sm:py-20">
-          <div className="max-w-7xl mx-auto text-center">
-            <Badge className="mb-4 bg-white/20 text-white border-white/30 px-4 py-1 text-sm">
-              NOMADX LIVE FACILITIES
-            </Badge>
-            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white mb-6">
-              Your Home in Busan
-            </h1>
-            <p className="text-xl sm:text-2xl text-white/90 mb-8 max-w-3xl mx-auto">
-              Experience world-class facilities designed for digital nomads, featuring modern amenities, comfortable accommodations, and vibrant community spaces
-            </p>
-            <Link href="#location">
-              <Button className="bg-white text-black hover:bg-gray-100 rounded-full px-8 py-6 text-lg font-semibold inline-flex items-center group">
-                Explore Our Facilities
-                <div className="ml-2 bg-black text-white rounded-full p-1 group-hover:translate-x-1 transition-transform">
-                  <ArrowRight className="h-4 w-4" />
-                </div>
-              </Button>
-            </Link>
-          </div>
+      <section className="pt-24 pb-12 px-4 sm:px-8 lg:px-16">
+        <div className="max-w-4xl mx-auto text-center">
+          <h1 className="text-4xl sm:text-6xl font-black text-gray-900 mb-4">
+            Our Facilities - NOMAD<span style={{ color: '#755B05' }}>X</span> Live
+          </h1>
+          <p className="text-xl text-gray-600">
+            Everything you need for work, play, and community living
+          </p>
         </div>
       </section>
 
-      {/* Location Section */}
-      <section id="location" className="py-20 lg:py-32">
-        <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            <div>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                Prime Location in Haeundae
-              </h2>
-              <div className="space-y-4 mb-8">
-                <div className="flex items-start gap-3">
-                  <MapPin className="h-6 w-6 text-emerald-600 flex-shrink-0 mt-1" />
-                  <div>
-                    <p className="font-semibold text-lg">Address</p>
-                    <p className="text-gray-600">13F-04, 48 Centum Jungang-ro, Haeundae-gu, Busan, Korea 48059</p>
+      {/* Main Facilities Grid */}
+      <section className="pb-20 px-4 sm:px-8 lg:px-16">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {/* Kitchen */}
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <ChefHat className="h-8 w-8 text-emerald-600 mb-3" />
+              <h3 className="text-xl font-bold mb-2">Kitchen</h3>
+              <p className="text-gray-600">Fully equipped and free to use</p>
+            </Card>
+
+            {/* Cafeteria */}
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <Coffee className="h-8 w-8 text-orange-600 mb-3" />
+              <h3 className="text-xl font-bold mb-2">Cafeteria</h3>
+              <p className="text-gray-600">Breakfast is included, don't miss it!</p>
+            </Card>
+
+            {/* Working Spaces */}
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <Wifi className="h-8 w-8 text-blue-600 mb-3" />
+              <h3 className="text-xl font-bold mb-2">Working Spaces</h3>
+              <p className="text-gray-600">Take a walk around facilities and check it out!</p>
+            </Card>
+
+            {/* Game Area */}
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <Gamepad2 className="h-8 w-8 text-purple-600 mb-3" />
+              <h3 className="text-xl font-bold mb-2">Game Area</h3>
+              <p className="text-gray-600">Pool, darts, and board/card games available</p>
+            </Card>
+
+            {/* TV Lounge */}
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <Tv className="h-8 w-8 text-indigo-600 mb-3" />
+              <h3 className="text-xl font-bold mb-2">TV Lounge</h3>
+              <p className="text-gray-600">4 TV spaces available next to the game area!</p>
+            </Card>
+
+            {/* Music Room */}
+            <Card className="p-6 hover:shadow-lg transition-shadow">
+              <Music className="h-8 w-8 text-pink-600 mb-3" />
+              <h3 className="text-xl font-bold mb-2">Music Room</h3>
+              <p className="text-gray-600">Next to the cafeteria!</p>
+            </Card>
+          </div>
+
+          {/* Special Facilities */}
+          <div className="grid sm:grid-cols-2 gap-6 mt-8">
+            {/* Nomad Gym */}
+            <Card className="p-8 bg-gray-50 hover:shadow-lg transition-shadow">
+              <div className="flex items-start gap-4">
+                <Dumbbell className="h-10 w-10 text-emerald-600 flex-shrink-0" />
+                <div>
+                  <h3 className="text-2xl font-bold mb-3">Nomad Gym</h3>
+                  <p className="text-gray-600 mb-2">2nd floor in this building, use the QR code for access!</p>
+                  <div className="space-y-1 text-sm">
+                    <p className="font-semibold">Hours:</p>
+                    <p>Weekday: 6am - 11pm</p>
+                    <p>Weekend: 8am - 11pm</p>
                   </div>
                 </div>
               </div>
-              <div className="grid sm:grid-cols-2 gap-4">
-                <Card className="p-4 border-2 hover:border-emerald-500 transition-colors">
-                  <h3 className="font-semibold mb-2">🏖️ Beach Access</h3>
-                  <p className="text-sm text-gray-600">5-minute walk to Haeundae Beach</p>
-                </Card>
-                <Card className="p-4 border-2 hover:border-emerald-500 transition-colors">
-                  <h3 className="font-semibold mb-2">🚇 Public Transport</h3>
-                  <p className="text-sm text-gray-600">3-minute walk to subway station</p>
-                </Card>
-                <Card className="p-4 border-2 hover:border-emerald-500 transition-colors">
-                  <h3 className="font-semibold mb-2">🍽️ Restaurants</h3>
-                  <p className="text-sm text-gray-600">50+ restaurants within 10 minutes</p>
-                </Card>
-                <Card className="p-4 border-2 hover:border-emerald-500 transition-colors">
-                  <h3 className="font-semibold mb-2">☕ Cafes</h3>
-                  <p className="text-sm text-gray-600">20+ cafes perfect for remote work</p>
-                </Card>
-              </div>
-            </div>
-            
-            <div className="relative h-[400px] lg:h-[500px] rounded-3xl overflow-hidden shadow-2xl">
-              <Image
-                src="/community-beach-photo.jpeg"
-                alt="Haeundae Beach View"
-                fill
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
-              <div className="absolute bottom-6 left-6 text-white">
-                <p className="text-sm font-medium mb-1">HAEUNDAE DISTRICT</p>
-                <p className="text-2xl font-bold">Heart of Busan</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+            </Card>
 
-      {/* Amenities Grid */}
-      <section className="py-20 lg:py-32 bg-gray-50">
-        <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
-          <div className="text-center mb-12 lg:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              World-Class Amenities
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Everything you need for a productive and comfortable stay
-            </p>
-          </div>
-          
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {amenities.map((amenity, index) => (
-              <Card 
-                key={index}
-                className="p-8 rounded-3xl hover:shadow-xl transition-all duration-300 hover:-translate-y-1 group cursor-pointer"
-                style={{ borderTop: `4px solid ${amenity.color}` }}
-              >
-                <div 
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform"
-                  style={{ backgroundColor: `${amenity.color}20` }}
-                >
-                  <amenity.icon className="h-7 w-7" style={{ color: amenity.color }} />
+            {/* Rooftop */}
+            <Card className="p-8 bg-gray-50 hover:shadow-lg transition-shadow">
+              <div className="flex items-start gap-4">
+                <svg className="h-10 w-10 text-blue-600 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 21h18M12 3v18M9 21V9.5a2.5 2.5 0 015 0V21" />
+                </svg>
+                <div>
+                  <h3 className="text-2xl font-bold mb-3">Rooftop</h3>
+                  <p className="text-gray-600 mb-2">Accessible from 9am to 5pm!</p>
+                  <p className="text-sm">Go to 15th floor and take the stairs till the rooftop</p>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  {amenity.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {amenity.description}
-                </p>
-              </Card>
-            ))}
+              </div>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Room Types Carousel */}
-      <section className="py-20 lg:py-32">
-        <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
-          <div className="text-center mb-12 lg:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Accommodation Options
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              From budget-friendly dorms to private rooms, find your perfect space
-            </p>
-          </div>
+      {/* Important Info Section */}
+      <section className="py-16 bg-gray-50">
+        <div className="px-4 sm:px-8 lg:px-16 max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-10">Important Information</h2>
           
-          <div className="relative max-w-5xl mx-auto">
-            <div className="overflow-hidden rounded-3xl">
-              <div 
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentRoom * 100}%)` }}
-              >
-                {roomTypes.map((room, index) => (
-                  <div key={index} className="w-full flex-shrink-0">
-                    <div className="grid lg:grid-cols-2 gap-8 bg-white rounded-3xl overflow-hidden shadow-lg">
-                      <div className="relative h-[300px] lg:h-[400px]">
-                        <Image
-                          src={room.image}
-                          alt={room.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      
-                      <div className="p-8 lg:p-12">
-                        <Badge className="mb-4 bg-emerald-100 text-emerald-800 border-emerald-200">
-                          {room.capacity}
-                        </Badge>
-                        <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-3">
-                          {room.name}
-                        </h3>
-                        <p className="text-gray-600 mb-6 leading-relaxed">
-                          {room.description}
-                        </p>
-                        
-                        <div className="space-y-3 mb-6">
-                          {room.features.map((feature, idx) => (
-                            <div key={idx} className="flex items-center gap-2">
-                              <Check className="h-5 w-5 text-emerald-600" />
-                              <span className="text-gray-700">{feature}</span>
-                            </div>
-                          ))}
-                        </div>
-                        
-                        <div className="flex items-center justify-between mb-6">
-                          <div>
-                            <p className="text-sm text-gray-500">Bed Type</p>
-                            <p className="font-semibold">{room.bed}</p>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-sm text-gray-500">Starting from</p>
-                            <p className="text-2xl font-bold text-emerald-600">{room.price}</p>
-                          </div>
-                        </div>
-                        
-                        <Link href="https://us2.cloudbeds.com/en/reservation/RW1b6i?currency=krw" target="_blank">
-                          <Button className="w-full bg-black text-white hover:bg-gray-800 rounded-full py-3 font-semibold">
-                            Book This Room
-                          </Button>
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="bg-white p-6 rounded-lg">
+              <Clock className="h-6 w-6 text-gray-600 mb-2" />
+              <h3 className="font-bold mb-1">Check-out</h3>
+              <p className="text-gray-700">11am</p>
             </div>
-            
-            {/* Navigation */}
-            <button
-              onClick={prevRoom}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110"
-            >
-              <ChevronLeft className="h-6 w-6 text-gray-800" />
-            </button>
-            
-            <button
-              onClick={nextRoom}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110"
-            >
-              <ChevronRight className="h-6 w-6 text-gray-800" />
-            </button>
-            
-            {/* Dots */}
-            <div className="flex justify-center mt-8 space-x-2">
-              {roomTypes.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentRoom(index)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    index === currentRoom 
-                      ? 'bg-gray-800 scale-150 w-8' 
-                      : 'bg-gray-300 hover:bg-gray-500'
-                  }`}
-                />
-              ))}
+
+            <div className="bg-white p-6 rounded-lg">
+              <Coffee className="h-6 w-6 text-gray-600 mb-2" />
+              <h3 className="font-bold mb-1">Breakfast</h3>
+              <p className="text-gray-700">8 to 11am</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg">
+              <svg className="h-6 w-6 text-gray-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+              </svg>
+              <h3 className="font-bold mb-1">Laundry</h3>
+              <p className="text-gray-700">Self payment machine and self service</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg">
+              <svg className="h-6 w-6 text-gray-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <h3 className="font-bold mb-1">Fridge</h3>
+              <p className="text-gray-700">Pay in the reception and label the container</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg">
+              <svg className="h-6 w-6 text-gray-600 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              </svg>
+              <h3 className="font-bold mb-1">Bikes</h3>
+              <p className="text-gray-700">1st floor outdoor parking lot (right side)<br/>Password: 01225</p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg">
+              <Users className="h-6 w-6 text-gray-600 mb-2" />
+              <h3 className="font-bold mb-1">Guest Group Chat</h3>
+              <p className="text-gray-700">WhatsApp QR code available at reception</p>
             </div>
           </div>
+
+          {/* Important Notice */}
+          <Card className="mt-8 p-6 bg-red-50 border-red-200">
+            <p className="text-red-800 font-semibold text-center">
+              ⚠️ Kitchen and TV room are free to use BUT clean after yourself!<br/>
+              Fine for not cleaning after yourself: 5,000Won
+            </p>
+          </Card>
         </div>
       </section>
 
-      {/* Gallery Section */}
-      <section className="py-20 lg:py-32 bg-gray-50">
-        <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
-          <div className="text-center mb-12 lg:mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-              Explore Our Spaces
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Take a virtual tour of our modern facilities and community areas
-            </p>
-          </div>
-          
-          <div className="relative max-w-4xl mx-auto">
-            <div className="overflow-hidden rounded-3xl shadow-2xl">
-              <div 
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentGallery * 100}%)` }}
-              >
-                {galleryImages.map((image, index) => (
-                  <div key={index} className="w-full flex-shrink-0 relative">
-                    <div className="relative h-[400px] lg:h-[600px]">
-                      <Image
-                        src={image.src}
-                        alt={image.alt}
-                        fill
-                        className="object-cover"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                      <div className="absolute bottom-8 left-8 right-8 text-white">
-                        <h3 className="text-2xl lg:text-3xl font-bold mb-2">{image.alt}</h3>
-                        <p className="text-lg opacity-90">{image.caption}</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Navigation */}
-            <button
-              onClick={prevGallery}
-              className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110"
-            >
-              <ChevronLeft className="h-6 w-6 text-gray-800" />
-            </button>
-            
-            <button
-              onClick={nextGallery}
-              className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white/90 hover:bg-white rounded-full p-3 shadow-lg transition-all duration-200 hover:scale-110"
-            >
-              <ChevronRight className="h-6 w-6 text-gray-800" />
-            </button>
-            
-            {/* Thumbnails */}
-            <div className="grid grid-cols-4 gap-2 mt-4">
-              {galleryImages.map((image, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentGallery(index)}
-                  className={`relative h-20 rounded-lg overflow-hidden transition-all duration-300 ${
-                    index === currentGallery 
-                      ? 'ring-2 ring-emerald-500 scale-105' 
-                      : 'opacity-70 hover:opacity-100'
-                  }`}
-                >
-                  <Image
-                    src={image.src}
-                    alt={image.alt}
-                    fill
-                    className="object-cover"
-                  />
-                </button>
-              ))}
-            </div>
+      {/* Other Locations */}
+      <section className="py-16">
+        <div className="px-4 sm:px-8 lg:px-16 max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl font-bold mb-8">Other NOMADX Locations</h2>
+          <div className="grid sm:grid-cols-2 gap-6">
+            <Card className="p-6">
+              <h3 className="font-bold text-lg mb-2">Nomadwork Green City</h3>
+              <p className="text-gray-600">Coworking space</p>
+            </Card>
+            <Card className="p-6">
+              <h3 className="font-bold text-lg mb-2">Nomadwork Centum City</h3>
+              <p className="text-gray-600">Coworking space</p>
+            </Card>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32" style={{ backgroundColor: '#1DB584' }}>
-        <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Ready to Experience NomadX Live?
-          </h2>
-          <p className="text-xl text-white/90 mb-10 max-w-3xl mx-auto">
-            Join our vibrant community of digital nomads in the heart of Busan
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link href="https://us2.cloudbeds.com/en/reservation/RW1b6i?currency=krw" target="_blank">
-              <Button className="bg-white text-emerald-700 hover:bg-gray-100 rounded-full px-10 py-6 text-xl font-semibold inline-flex items-center group">
-                Book Your Stay
-                <div className="ml-3 bg-emerald-700 text-white rounded-full p-1 group-hover:translate-x-1 transition-transform">
-                  <ArrowRight className="h-5 w-5" />
-                </div>
-              </Button>
-            </Link>
-            <Link href="/live">
-              <Button 
-                variant="outline" 
-                className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-emerald-700 rounded-full px-10 py-6 text-xl font-semibold"
-              >
-                Learn More
-              </Button>
-            </Link>
-          </div>
+      <section className="py-16 bg-black text-white">
+        <div className="px-4 sm:px-8 lg:px-16 max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl font-bold mb-6">Do you want to work with us?</h2>
+          <Link href="https://www.nomadx.life/join">
+            <Button className="bg-white text-black hover:bg-gray-100 rounded-full px-8 py-4 text-lg font-semibold">
+              Join NOMADX Team
+            </Button>
+          </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-16">
-        <div className="px-4 sm:px-8 lg:px-16 max-w-7xl mx-auto">
-          <div className="text-center">
-            <h3 className="text-3xl font-black mb-4">
-              <span style={{ color: '#755B05' }}>NOMAD</span><span className="text-white">X</span>
-            </h3>
-            <p className="mb-2">13F-04, 48 Centum Jungang-ro</p>
-            <p className="mb-8">Haeundae-gu, Busan, Korea 48059</p>
-            <p className="text-sm">&copy; 2024 NOMADX. All rights reserved.</p>
-          </div>
+      <footer className="bg-gray-900 text-white py-8">
+        <div className="px-4 sm:px-8 lg:px-16 max-w-4xl mx-auto text-center">
+          <h3 className="text-2xl font-black mb-4">
+            <span style={{ color: '#755B05' }}>NOMAD</span><span className="text-white">X</span>
+          </h3>
+          <p className="text-sm">&copy; 2024 NOMADX. All rights reserved.</p>
         </div>
       </footer>
     </div>
